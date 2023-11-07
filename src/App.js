@@ -72,7 +72,7 @@ class App extends Component {
       this.setState(pre => ({
         cartList: pre.cartList.map(each =>
           each.id === product.id
-            ? {...each, quantity: each.quantity + 1}
+            ? {...each, quantity: each.quantity + product.quantity}
             : each,
         ),
       }))
