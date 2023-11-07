@@ -21,11 +21,32 @@ class App extends Component {
 
   removeAllCartItems = () => this.setState({cartList: []})
 
-  /* incrementCartItemQuantity = () =>
-    this.setState(pre => ({quality: pre.quality + 1}))
+  incrementCartItemQuantity = id => {
+    this.setState(pre => ({
+      cartList: pre.cartList.map(each => {
+        if (each.id === id) {
+          return {...each, quantity: each.quantity + 1}
+        }
+        return each
+      }),
+    }))
+  }
 
-  decrementCartItemQuantity = () =>
-    this.setState(pre => ({quality: pre.quality - 1})) */
+  decrementCartItemQuantity = id => {
+    // const {cartList} = this.state
+    this.setState(pre => ({
+      cartList: pre.cartList.map(each => {
+        if (each.id === id) {
+          if (each.quantity > 1) {
+            return {...each, quantity: each.quantity - 1}
+          }
+          this.removeCartItem(id)
+        }
+        return each
+      }),
+    }))
+    // console.log(this.cartList)
+  }
 
   removeCartItem = id => {
     const {cartList} = this.state
@@ -42,11 +63,18 @@ class App extends Component {
     //   TODO: Update the code here to implement addCartItem
     const {cartList} = this.state
     const similarItem = cartList.find(eachItem => eachItem.id === product.id)
-    console.log(similarItem)
+    console.log(similarItem, 'hi')
     if (similarItem === undefined) {
       this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
     }
+    this.setState(pre => ({
+      cartList: pre.cartList.map(each =>
+        each.id === product.id ? {...each, quantity: each.quantity + 1} : each,
+      ),
+    }))
   }
+
+  updateQuantity = () => {}
 
   render() {
     const {cartList} = this.state
@@ -60,6 +88,7 @@ class App extends Component {
           removeAllCartItems: this.removeAllCartItems,
           incrementCartItemQuantity: this.incrementCartItemQuantity,
           decrementCartItemQuantity: this.decrementCartItemQuantity,
+          updateQuantity: this.updateQuantity,
         }}
       >
         <Switch>
