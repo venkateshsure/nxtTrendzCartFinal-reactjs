@@ -63,15 +63,20 @@ class App extends Component {
     //   TODO: Update the code here to implement addCartItem
     const {cartList} = this.state
     const similarItem = cartList.find(eachItem => eachItem.id === product.id)
-    console.log(similarItem, 'hi')
+    // console.log(similarItem, 'hi')
     if (similarItem === undefined) {
+      console.log(similarItem, product)
       this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
+    } else {
+      console.log(similarItem, product)
+      this.setState(pre => ({
+        cartList: pre.cartList.map(each =>
+          each.id === product.id
+            ? {...each, quantity: each.quantity + 1}
+            : each,
+        ),
+      }))
     }
-    this.setState(pre => ({
-      cartList: pre.cartList.map(each =>
-        each.id === product.id ? {...each, quantity: each.quantity + 1} : each,
-      ),
-    }))
   }
 
   updateQuantity = () => {}
