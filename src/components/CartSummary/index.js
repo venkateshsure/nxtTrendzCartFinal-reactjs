@@ -22,7 +22,7 @@ class CartSummary extends Component {
             <div className="cart-summary-con">
               <div className="text-con">
                 <h1 className="cart-summary-heading">Order Total</h1>
-                <p>Rs {totalPrice}/-</p>
+                <h1>Rs {totalPrice}/-</h1>
               </div>
               <p>{cartList.length} items in cart</p>
               <button className="cart-summary-button" type="button">
