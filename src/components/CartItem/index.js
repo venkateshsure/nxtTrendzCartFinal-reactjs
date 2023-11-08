@@ -18,7 +18,7 @@ const CartItem = props => (
       const onRemoveCartItem = () => {
         removeCartItem(id)
       }
-      // TODO: Update the functionality to increment and decrement quantity of the cart item
+
       const onIncrementCartItemQuantity = () => incrementCartItemQuantity(id)
 
       const onDecrementCartItemQuantity = () => decrementCartItemQuantity(id)

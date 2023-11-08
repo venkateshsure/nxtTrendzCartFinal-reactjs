@@ -17,7 +17,6 @@ class CartSummary extends Component {
               accumulator + currentItem.price * currentItem.quantity,
             0,
           )
-          console.log(totalPrice)
           return (
             <div className="cart-summary-con">
               <div className="text-con">
